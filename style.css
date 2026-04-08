@@ -9,18 +9,8 @@ body {
     background: #000;
     min-height: 100vh;
     position: relative;
-    overflow: hidden;
+    overflow-x: hidden;
     color: #fff;
-}
-
-/* 隐藏滚动条 */
-body::-webkit-scrollbar {
-    display: none;
-}
-
-body {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
 }
 
 /* particles.js 背景 */
