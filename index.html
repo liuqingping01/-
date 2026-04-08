@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>下班倒计时</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+</head>
+<body>
+    <!-- particles.js 背景 -->
+    <div id="particles-js"></div>
+    <!-- 设置页面 -->
+    <div id="setup-page">
+        <h1>下班倒计时</h1>
+        <div class="setup-container">
+            <div class="input-group">
+                <label for="username">您的尊称是：</label>
+                <input type="text" id="username" placeholder="请输入您的姓名">
+            </div>
+            <div class="input-group">
+                <label for="offwork-time">下班时间：</label>
+                <select id="offwork-time">
+                    <option value="00:00">00:00</option>
+                    <option value="00:30">00:30</option>
+                    <option value="01:00">01:00</option>
+                    <option value="01:30">01:30</option>
+                    <option value="02:00">02:00</option>
+                    <option value="02:30">02:30</option>
+                    <option value="03:00">03:00</option>
+                    <option value="03:30">03:30</option>
+                    <option value="04:00">04:00</option>
+                    <option value="04:30">04:30</option>
+                    <option value="05:00">05:00</option>
+                    <option value="05:30">05:30</option>
+                    <option value="06:00">06:00</option>
+                    <option value="06:30">06:30</option>
+                    <option value="07:00">07:00</option>
+                    <option value="07:30">07:30</option>
+                    <option value="08:00">08:00</option>
+                    <option value="08:30">08:30</option>
+                    <option value="09:00">09:00</option>
+                    <option value="09:30">09:30</option>
+                    <option value="10:00">10:00</option>
+                    <option value="10:30">10:30</option>
+                    <option value="11:00">11:00</option>
+                    <option value="11:30">11:30</option>
+                    <option value="12:00">12:00</option>
+                    <option value="12:30">12:30</option>
+                    <option value="13:00">13:00</option>
+                    <option value="13:30">13:30</option>
+                    <option value="14:00">14:00</option>
+                    <option value="14:30">14:30</option>
+                    <option value="15:00">15:00</option>
+                    <option value="15:30">15:30</option>
+                    <option value="16:00">16:00</option>
+                    <option value="16:30">16:30</option>
+                    <option value="17:00">17:00</option>
+                    <option value="17:30">17:30</option>
+                    <option value="18:00" selected>18:00 (默认)</option>
+                    <option value="18:30">18:30</option>
+                    <option value="19:00">19:00</option>
+                    <option value="19:30">19:30</option>
+                    <option value="20:00">20:00</option>
+                    <option value="20:30">20:30</option>
+                    <option value="21:00">21:00</option>
+                    <option value="21:30">21:30</option>
+                    <option value="22:00">22:00</option>
+                    <option value="22:30">22:30</option>
+                    <option value="23:00">23:00</option>
+                    <option value="23:30">23:30</option>
+                    <option value="24:00">24:00</option>
+                </select>
+            </div>
+            <button id="start-countdown">开始倒计时</button>
+        </div>
+    </div>
+
+    <!-- 倒计时页面 -->
+    <div id="countdown-page" style="display: none;">
+        <div class="current-time">2026年4月6日 10:35:30</div>
+        <h2>尊敬的<span id="user-display"></span></h2>
+        <div class="countdown-container">
+            <div class="countdown-box offwork-box">
+                <h3>距离下班</h3>
+                <div id="offwork-countdown"></div>
+            </div>
+            <div class="countdown-box">
+                <h3>距离周末仅剩</h3>
+                <div id="weekend-countdown"></div>
+            </div>
+            <div class="countdown-box">
+                <h3>距离法定节假日</h3>
+                <div id="holiday-countdown"></div>
+            </div>
+            <div class="countdown-box">
+                <h3>距离下一个周末</h3>
+                <div id="next-weekend-countdown"></div>
+            </div>
+            <div class="countdown-box">
+                <h3>距离春节</h3>
+                <div id="spring-festival-countdown"></div>
+            </div>
+        </div>
+        <div class="year-summary">
+            <p>到过年前，今年还有... ...</p>
+            <div class="summary-boxes">
+                <div class="summary-box">
+                    <div class="label">剩余周末</div>
+                    <div class="value" id="remaining-weekends">34个周末</div>
+                </div>
+                <div class="summary-box">
+                    <div class="label">剩余法定节假日</div>
+                    <div class="value" id="remaining-holidays">6个法定节假日</div>
+                </div>
+                <div class="summary-box">
+                    <div class="label">法定节假日天数</div>
+                    <div class="value" id="holiday-days">35天假期</div>
+                </div>
+                <div class="summary-box">
+                    <div class="label">可休息总天数</div>
+                    <div class="value" id="total-rest-days">78天</div>
+                </div>
+            </div>
+        </div>
+        <button id="back-to-setup">重新设置</button>
+    </div>
+
+    <!-- 庆祝动画 -->
+    <div id="celebration" style="display: none;">
+        <div class="celebration-content">
+            <h2>🎉 恭喜！</h2>
+            <p>倒计时结束啦！</p>
+            <div class="celebration-buttons">
+                <button id="celebration-close">立即下班</button>
+                <button id="celebration-close">立即放假</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
